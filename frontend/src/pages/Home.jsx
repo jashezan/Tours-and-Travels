@@ -3,19 +3,14 @@ import '../styles/home.css'
 
 import { Container, Row,Col } from 'reactstrap'
 
-import heroImg from '../assets/images/hero-img01.jpg'
-import heroImg02 from '../assets/images/hero-img02.jpg'
-import heroVideo from '../assets/images/hero-video.mp4'
+import db from '../assets/images/db.jpg'
+import fm from '../assets/images/fm.jpg'
+import bd from '../assets/images/bd.jpg'
 import worldImg from '../assets/images/world.png'
 import Subtitle from './../shared/Subtitle'
 
 import SearchBar from './../shared/SearchBar'
 import ServiceList from '../services/ServiceList'
-
-
-import db from '../assets/images/db.jpg'
-import fm from '../assets/images/fm.jpg'
-import bd from '../assets/images/bd.jpg'
 
 
 const Home = () => {
@@ -32,7 +27,7 @@ const Home = () => {
                   <Subtitle subtitle={'Unlock Your Adventure'}/>
                   <img src={worldImg} alt="" />
                 </div>
-                <h1>Exploring creates lasting memories <span className="highlight">memories</span></h1>
+                <h1>Exploring creates lasting <span className="highlight">memories</span></h1>
                 <p>"Embrace the journey, it shapes you. Every step, every challenge, every setback, contributes to your growth. You're stronger than you know, with limitless potential. Keep moving forward, even when it's tough. The view from the top will be worth it all."</p>
               </div>
             </Col>
