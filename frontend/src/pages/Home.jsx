@@ -22,11 +22,11 @@ const Home = () => {
             <Col lg='6'>
               <div className="hero__content">
                 <div className="hero__subtitle d-flex align-items-center ">
-                  <Subtitle subtitle={'Learn Before You Leap'}/>
+                  <Subtitle subtitle={'Unlock Your Adventure'}/>
                   <img src={worldImg} alt="" />
                 </div>
-                <h1>Traveling opens the door to creating <span className="highlight">memories</span></h1>
-                <p>“Embrace the journey, for it is the path that shapes you. Every step, every challenge, every setback—it all contributes to your growth. You are stronger than you realize, and your potential knows no bounds. Keep moving forward, even when the road seems steep. The view from the top will be worth every effort.”</p>
+                <h1>Exploring creates lasting memories <span className="highlight">memories</span></h1>
+                <p>"Embrace the journey, it shapes you. Every step, every challenge, every setback, contributes to your growth. You're stronger than you know, with limitless potential. Keep moving forward, even when it's tough. The view from the top will be worth it all."</p>
               </div>
             </Col>
 
