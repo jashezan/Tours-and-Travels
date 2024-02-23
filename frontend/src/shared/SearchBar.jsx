@@ -6,7 +6,7 @@ const Searchbar = () => {
   return <Col lg='12'>
     <div className="search__bar">
         <Form className='d-flex align-items-center gap-4'>
-            <FormGroup className='d-flex gap-3 form__group form__group-fast'>
+            <FormGroup className='d-flex gap-3 form__group form__group-first'>
                 <span>
                     <i class="ri-map-pin-line"></i>
                 </span>
@@ -15,13 +15,13 @@ const Searchbar = () => {
                     <input type="text" placeholder='Where would you like to go?' />
                 </div>
             </FormGroup>
-            <FormGroup className='d-flex gap-3 form__group form__group-fast'>
+            <FormGroup className='d-flex gap-3 form__group form__group-first'>
                 <span>
                     <i class="ri-map-pin-time-line"></i>
                 </span>
                 <div>
                     <h6>Distance</h6>
-                    <input type="number" placeholder='Distance km' />
+                    <input type="number" placeholder='km' />
                 </div>
             </FormGroup>
             <FormGroup className='d-flex gap-3 form__group form__group-last'>
