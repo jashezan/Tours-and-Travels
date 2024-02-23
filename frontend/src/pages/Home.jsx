@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/home.css'
 
 import { Container, Row,Col } from 'reactstrap'
+
 import heroImg from '../assets/images/hero-img01.jpg'
 import heroImg02 from '../assets/images/hero-img02.jpg'
 import heroVideo from '../assets/images/hero-video.mp4'
@@ -10,6 +11,12 @@ import Subtitle from './../shared/Subtitle'
 
 import SearchBar from './../shared/SearchBar'
 import ServiceList from '../services/ServiceList'
+
+
+import db from '../assets/images/db.jpg'
+import fm from '../assets/images/fm.jpg'
+import bd from '../assets/images/bd.jpg'
+
 
 const Home = () => {
   return (
@@ -32,17 +39,20 @@ const Home = () => {
 
             <Col lg='2'>
               <div className="hero__img-box">
-                <img src={heroImg} alt="" />
+                {/* <img src={heroImg} alt="" /> */}
+                <img src={db} alt="" />
               </div>
             </Col>
             <Col lg='2'>
               <div className="hero__img-box mt-4">
-                <video src={heroVideo} alt="" controls />
+                <img src={fm} alt="" />
+                {/* <video src={heroVideo} alt="" controls /> */}
               </div>
             </Col>
             <Col lg='2'>
               <div className="hero__img-box mt-5">
-                <img src={heroImg02} alt="" />
+                {/* <img src={heroImg02} alt="" /> */}
+                <img src={bd} alt="" />
               </div>
             </Col>
 
