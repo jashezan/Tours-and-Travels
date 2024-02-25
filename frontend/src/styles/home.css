@@ -55,3 +55,16 @@
     font: size 2.3rem;
     font-weight: 500;
 }
+
+.experience__content h2{
+    font-size: 2.3rem;
+    margin-top: 1.1rem;
+    font-weight: 500;
+}
+
+.experience__content p {
+    font: size 1.1rem;
+    color: var(--text-color);
+}
+
+
