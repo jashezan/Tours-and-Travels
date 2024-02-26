@@ -37,6 +37,9 @@ const quick__links2 = [
 ]
 
 const Footer = () => {
+
+  const year = new Date().getFullYear()
+
   return (
     <footer className="footer">
       <Container>
@@ -122,6 +125,10 @@ const Footer = () => {
               </ListGroupItem>
 
             </ListGroup>
+          </Col>
+
+          <Col lg='12' className='text-center pt-5'>
+            <p className="copyright">Copyright {year}, design and developed by Unstoppable_Devs_CSE471. All rights reserved.</p>
           </Col>
         </Row>
       </Container>
