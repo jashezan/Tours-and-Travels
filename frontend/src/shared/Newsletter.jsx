@@ -1,12 +1,12 @@
 import React from 'react'
-import '.newsletter.css'
+import './newsletter.css'
 
 import { Container, Row, Col } from 'reactstrap'
 import maleTourist from '../assets/images/male-tourist.png'
 
 const Newsletter = () => {
     return (
-        <section>
+        <section className='newsletter'>
             <Container>
                 <Row>
                     <Col lg='6'>
@@ -18,7 +18,12 @@ const Newsletter = () => {
                                 <button className='btn newsletter__btn'>Subscribe</button>
                             </div>
 
-                            <p>Dear Travel Enthusiasts, Welcome to our monthly newsletter! As your trusted travel partner, we’re excited to share the latest happenings, insider tips, and exciting offers. Let’s dive in</p>
+                            <p>Dear Travel Enthusiasts, welcome to our monthly newsletter! As your trusted travel partner, we’re excited to share the latest happenings, insider tips, and exciting offers. Let’s dive in</p>
+                        </div>
+                    </Col>
+                    <Col lg='6'>
+                        <div className="newsletter__img">
+                            <img src={maleTourist} alt="" />
                         </div>
                     </Col>
                 </Row>
