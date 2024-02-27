@@ -1,0 +1,47 @@
+.tour__content img {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.tour__info {
+    border-radius: 0.5rem;
+    border: 1px solid rgb(229, 231, 235);
+    padding: 2rem;
+}
+
+.tour__info h2 {
+    font-size: 1.5rem;
+}
+
+.tour__info span {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-style: 1rem;
+    color: var(--text-color);
+}
+
+.tour__info span i {
+    color: var(--heading-color);
+    font-size: 1.1rem;
+}
+
+.tour__extra-details {
+    display: flex;
+    align-items: center;
+    column-gap: 2.7rem;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;  
+}
+
+.tour__info h5 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.tour__info p {
+    line-height: 30px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
