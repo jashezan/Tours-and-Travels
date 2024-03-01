@@ -29,11 +29,11 @@ export const register = async(req,res)=>{
 // user login
 export const login = async(req,res)=>{
 
-    const email = req.body.email
+    const email = req.body.email;
 
     try { 
     
-    const user = await User.findOne({email})
+    const user = await User.findOne({email});
     
     //if user doesn't exist
     if(!user){
@@ -41,7 +41,7 @@ export const login = async(req,res)=>{
     }
 
     //if user exist then check the password or compare the password
-    const checkCorrectPassword = bcrypt.compare(
+    const checkCorrectPassword = await bcrypt.compare(
       req.body.password, 
       user.password
     );
@@ -70,9 +70,9 @@ export const login = async(req,res)=>{
       })
       .status(200)
       .json({
-        success:true,
-        message:"successfylly login", 
+        token, 
         data:{...rest},
+        role,
       });
   } catch (err) {
     res.status(500).json({success:false,message:"Failed to login"});
