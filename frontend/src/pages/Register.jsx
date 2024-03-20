@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react'
+
 import { Container, Row, Col, Form, FormGroup, Button } from 'reactstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import '../styles/login.css'
 
 import registerImg from '../assets/images/register.png'
 import userIcon from '../assets/images/user.png'
-import { AuthContext } from '../context/AuthContext'
+
+import { AuthContext } from './../context/AuthContext'
 import { BASE_URL } from './../utils/config'
 
 const Register = () => {
@@ -74,7 +76,7 @@ const Register = () => {
                   </FormGroup>
                   <Button className='btn secondary__btn auth__btn' type='submit'>Create Account</Button>
                 </Form>
-                <p>Already got an account? <Link to='/login'>Login here</Link></p>
+                <p>Already registered? <Link to='/login'>Login here</Link></p>
               </div>
             </div>
           </Col>

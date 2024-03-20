@@ -9,11 +9,8 @@ import TourCard from './../shared/TourCard'
 import Newsletter from './../shared/Newsletter'
 
 const SearchResultList = () => {
-
   const location = useLocation()
-
   const [data] = useState(location.state)
-
 
   return (
     <>
