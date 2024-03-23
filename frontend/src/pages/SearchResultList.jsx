@@ -19,7 +19,7 @@ const SearchResultList = () => {
         <Container>
           <Row>
             {data.length === 0 ? (
-              <h4 className='text-center'><p>No hits found :<span>&#40;</span></p></h4>
+              <h4 className='text-center'>No hits found</h4>
             ) : (
               data?.map(tour => (
                 <Col lg='3' className='mb-4' key={tour._id}>
