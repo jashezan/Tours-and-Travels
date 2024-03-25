@@ -6,18 +6,25 @@ import { Container, Row, Col } from 'reactstrap'
 import { useLocation } from 'react-router-dom'
 import TourCard from './../shared/TourCard'
 
+import Searchbar from '../shared/SearchBar'
 import Newsletter from './../shared/Newsletter'
 
 const SearchResultList = () => {
   const location = useLocation()
   const [data] = useState(location.state)
 
+  console.log(data)
+
   return (
     <>
       <CommonSection title={"Tour Search Result"} />
+
       <section>
         <Container>
           <Row>
+
+            <Searchbar />
+
             {data.length === 0 ? (
               <h4 className='text-center'>No hits found</h4>
             ) : (
