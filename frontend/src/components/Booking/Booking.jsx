@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import './booking.css'
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from 'reactstrap'
 
@@ -10,7 +10,7 @@ const Booking = ({ tour, avgRating }) => {
     const { price, reviews, title } = tour
     const navigate = useNavigate()
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const [booking, setBooking] = useState({
         userId: user && user._id,
@@ -35,32 +35,32 @@ const Booking = ({ tour, avgRating }) => {
 
         console.log(booking)
         try {
-           if(!user || user===undefined || user===null){
-            return alert("please sign in")
-           }
-           
-           
-           const res = await fetch(`${BASE_URL}/booking`,{
-            method:'post',
-            headers:{
-                'content-type':'application/json',
-            },
-            credentilas: 'include',
-            body:JSON.stringify(booking),
-           })
+            if (!user || user === undefined || user === null) {
+                return alert("please sign in")
+            }
 
-           const result = await res.json()
 
-           if(!res.ok) {
-            return alert(result.message)
-           }
-           navigate('/thank-you')
+            const res = await fetch(`${BASE_URL}/booking`, {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(booking),
+            })
+
+            const result = await res.json()
+
+            if (!res.ok) {
+                return alert(result.message)
+            }
+            navigate('/thank-you')
 
         } catch (err) {
-          alert(err.message)  
+            alert(err.message)
         }
 
-        
+
     }
 
     return (
