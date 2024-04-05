@@ -14,23 +14,23 @@ const TourDetails = () => {
   const { id } = useParams()
   const reviewMsgRef = useRef('')
   const [tourRating, setTourRating] = useState(null)
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   // fetch data from database
   const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`)
 
   // destructure properties from tour object
-  const { 
-    photo, 
-    title, 
-    desc, 
-    price, 
-    address, 
-    reviews, 
-    city, 
-    distance, 
+  const {
+    photo,
+    title,
+    desc,
+    price,
+    address,
+    reviews,
+    city,
+    distance,
     maxGroupSize
-   } = tour
+  } = tour
 
   const { totalRating, avgRating } = calculateAvgRating(reviews)
 
@@ -38,33 +38,33 @@ const TourDetails = () => {
   const options = { day: 'numeric', month: 'long', year: 'numeric' }
 
   // submit request to the server
-  const submitHandler =async e => {
+  const submitHandler = async e => {
     e.preventDefault()
     const reviewText = reviewMsgRef.current.value
-    
+
     try {
 
-      if(!user || user===undefined || user===null){
+      if (!user || user === undefined || user === null) {
         alert('Please sign in')
-      } 
-
-      const reviewObj = {
-        username:user?.username,
-        reviewText,
-        rating:tourRating
       }
 
-      const res = await fetch(`${BASE_URL}/review/${id}`,{
-        method:'post',
-        headers:{
-          'content-type':'application/json'            
+      const reviewObj = {
+        username: user?.username,
+        reviewText,
+        rating: tourRating
+      }
+
+      const res = await fetch(`${BASE_URL}/review/${id}`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json'
         },
-        credentials:'include',
-        body:JSON.stringify(reviewObj)
+        credentials: 'include',
+        body: JSON.stringify(reviewObj)
       })
 
       const result = await res.json()
-      if(!res.ok) {
+      if (!res.ok) {
         return alert(result.message)
       }
 
