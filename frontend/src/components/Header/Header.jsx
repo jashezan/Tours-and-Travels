@@ -17,6 +17,10 @@ const nav__links = [
     display: 'About'
   },
   {
+    path: '/chats',
+    display: 'Chat'
+  },
+  {
     path: '/tours',
     display: 'Tours'
   },
