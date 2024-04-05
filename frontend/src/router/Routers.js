@@ -10,6 +10,7 @@ import SearchResultList from './../pages/SearchResultList';
 import ThankYou from '../pages/ThankYou';
 import Payment from '../pages/Payment';
 import Profile from '../pages/Profile'
+import Chats from '../pages/Chats';
 
 const Routers = () => {
   return (
@@ -24,6 +25,8 @@ const Routers = () => {
       <Route path='/tours/search' element={<SearchResultList />} />
       <Route path='/payment' element={<Payment />} />
       <Route path='/profile' element={<Profile />} />
+
+      <Route path='/chats' element={<Chats />} />
     </Routes>
   )
 }

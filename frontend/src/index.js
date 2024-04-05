@@ -14,13 +14,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <ChakraProvider>
+      
       <BrowserRouter>
-        
+        <ChakraProvider>
           <App />
+        </ChakraProvider>
         
       </BrowserRouter>
-      </ChakraProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );
