@@ -54,7 +54,7 @@ const Booking = ({ tour, avgRating }) => {
             if (!res.ok) {
                 return alert(result.message)
             }
-            navigate('/payment')
+            navigate('/thank-you')
 
         } catch (err) {
             alert(err.message)
