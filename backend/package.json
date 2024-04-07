@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "start-dev": "nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.2.0",
+    "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "stripe": "^14.23.0"
   },

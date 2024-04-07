@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { USER_ROLE } from "../data/index.js";
+
 
 const userSchema = new mongoose.Schema(
   {
@@ -16,14 +18,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required : true,  
     },
-
     photo:{
       type: String,
     },
-
     role: {
       type: String,
-      default: "user",
+      default: USER_ROLE.USER,
     },
   },
   {timestamps:true}

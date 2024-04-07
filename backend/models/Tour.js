@@ -32,17 +32,15 @@ const tourSchema = new mongoose.Schema(
       required: true,
     },
     maxGroupSize: {
-    type: Number,
-    required: true,
+      type: Number,
+      required: true,
     },
-
     reviews: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Review",
       },
     ],
-
     featured: {
       type: Boolean,
       default: false,

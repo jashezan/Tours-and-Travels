@@ -1,38 +1,38 @@
-
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { BOOKING_STATUS } from "../data/index.js"
 
 const bookingSchema = new mongoose.Schema(
   {
-    userId:{
-      type: String,
-      required:true,
-      ref: 'User'
+    userId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
-    userEmail:{
-      type: String,
+    tourId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Tour",
     },
-    tourName:{
-      type: String,
-      required:true
-    },
-    fullName: {
+    guestSize: {
       type: String,
       required: true,
     },
-    guestSize:{
-        type: Number,
-        required: true
+    phone: {
+      type: String,
+      required: true,
     },
-    phone:{
+    status: {
+      // this can be only pending, cancelled, completed
+      type: String,
+      required: true,
+      default: BOOKING_STATUS.PENDING,
+    },
+    payment: {
       type: Number,
-      required: true
-    },
-    bookAt:{
-      type: Date,
-      //required: true
+      default: null,
     },
   },
-  {timestamps:true}
+  { timestamps: true }
 );
 
 export default mongoose.model("Booking", bookingSchema);
