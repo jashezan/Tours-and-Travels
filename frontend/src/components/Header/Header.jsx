@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useContext } from 'react'
 import { Container, Row, Button } from 'reactstrap'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 
-import logo from '../../assets/images/logo.png'
+import logo from "../../assets/images/logo512.png";
 import './header.css'
 
 import { AuthContext } from '../../context/AuthContext'
@@ -52,29 +52,30 @@ const Header = () => {
 
   useEffect(() => {
     stickyHeaderFunc()
-
     return window.removeEventListener('scroll', stickyHeaderFunc)
   })
 
   return (
-    <header className='header' ref={headerRef}>
+    <header className="header" ref={headerRef}>
       <Container>
         <Row>
           <div className="nav__wrapper d-flex align-items-center justify-content-between">
             {/* =========logo start========= */}
             <div className="logo">
-              <img src={logo} alt="" />
+              <Link to="/">
+                <img src={logo} alt="" />
+              </Link>
             </div>
             {/* =========logo  end========= */}
 
             {/* =========menu  start========= */}
-            <div className="navigation">
-              <ul className="menu d-flex align-items-center gap-5">
+            <div className="navigation d-flex align-items-center justify-between">
+              <ul className="menu d-flex align-items-center justify-between gap-5">
                 {nav__links.map((item, index) => (
                   <li className="nav__item" key={index}>
                     <NavLink
                       to={item.path}
-                      className={navClass =>
+                      className={(navClass) =>
                         navClass.isActive ? "active__link" : ""
                       }
                     >
@@ -90,20 +91,20 @@ const Header = () => {
               <div className="nav__btns d-flex align-items-center gap-4">
                 {user ? (
                   <>
-                    <Button className='btn secondary__btn'>
-                      <Link to='/profile'>{user.username}</Link>
+                    <Button className="btn secondary__btn">
+                      <Link to="/profile">{user.username.toUpperCase()}</Link>
                     </Button>
-                    <Button className='btn btn-dark' onClick={logout}>
+                    <Button className="btn btn-dark" onClick={logout}>
                       Logout
                     </Button>
                   </>
                 ) : (
                   <>
-                    <Button className='btn secondary__btn'>
-                      <Link to='/login'>Login</Link>
+                    <Button className="btn secondary__btn">
+                      <Link to="/login">Login</Link>
                     </Button>
-                    <Button className='btn primary__btn'>
-                      <Link to='/register'>Register</Link>
+                    <Button className="btn primary__btn">
+                      <Link to="/register">Register</Link>
                     </Button>
                   </>
                 )}
@@ -112,13 +113,12 @@ const Header = () => {
               <span className="mobile__menu">
                 <i class="ri-menu-line"></i>
               </span>
-
             </div>
           </div>
         </Row>
       </Container>
     </header>
-  )
+  );
 }
 
 export default Header

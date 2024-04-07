@@ -41,6 +41,14 @@ ul {
   list-style: none;
 }
 
+.main__layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .primary__btn {
   background: var(--secondary-color) !important;
   border: none !important;
@@ -85,3 +93,4 @@ ul {
   font-size: 1.7rem;
   color: var(--heading-color);
 }
+

@@ -10,20 +10,31 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState()
 
   return (
-    <Box d='flex' justifyContent='space-between' alignItems='center' bg='white' w='100%' p='5px 10px 5px 10px' borderWidth='5px' >
-      <Tooltip label="Search users to chat" hasArrow placement='bottom-end'>
-        <Button variant='ghost'>
+    <Box
+      d="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      bg="white"
+      w="100%"
+      p="5px 10px 5px 10px"
+      borderWidth="5px"
+    >
+      <Tooltip label="Search users to chat" hasArrow placement="bottom-end">
+        <Button
+          variant="ghost"
+          className=" d-flex align-items-center justify-content-between"
+        >
           <i class="ri-search-line"></i>
-          <Text d={{ base: "none", md: "flex" }} px='4' >
+          <Text d={{ base: "none", md: "flex" }} px="4">
             Search User
           </Text>
         </Button>
       </Tooltip>
-      <Text fontSize='2x1' fontFamily='Work sans'>
+      <Text fontSize="2x1" fontFamily="Work sans">
         Chat with Experts
       </Text>
     </Box>
-  )
+  );
 }
 
 export default SideDrawer

@@ -31,14 +31,23 @@ const Chats = () => {
     }, [])
 
     return (
-        <div style={{ width: "100%" }}>
-            {user && <SideDrawer />}
-            <Box d="flex" justifyContent='space-between' w='100%' h='91.5vh' p='10px'>
-                {user && <MyChats />}
-                {user && <ChatBox />}
-            </Box>
-        </div>
-    )
+      <div
+        className="container mx-auto  d-flex"
+        style={{ width: "100%" }}
+      >
+        <div className="w-30 h-70">{user && <SideDrawer />}</div>
+        <Box
+          d="flex"
+          justifyContent="space-between"
+          w="70%"
+          h="91.5vh"
+          p="10px"
+        >
+          {user && <MyChats />}
+          {user && <ChatBox />}
+        </Box>
+      </div>
+    );
 }
 
 export default Chats
