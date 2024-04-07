@@ -11,6 +11,19 @@ const bookingSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: "Tour",
+      default: null,
+    },
+    guideId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Guide",
+      default: null,
+    },
+    planeTicketId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "PlaneTicket",
+      default: null,
     },
     guestSize: {
       type: String,
@@ -19,7 +32,7 @@ const bookingSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );

@@ -1,22 +1,33 @@
 import Booking from "../models/Booking.js";
 import { BOOKING_STATUS, ROW_PER_PAGE } from "../data/index.js";
+import sendMail from "../config/nodemailer.js"
+import User from "../models/User.js";
 
 // create new booking
 export const createBooking = async (req, res) => {
-  const { userId, tourId, guestSize, phone } = req.body;
+  const { tourId, guestSize, phone, payment, guideId, planeTicketId } =
+    req.body;
   const newBooking = new Booking({
-    userId,
+    userId: req.user.id,
     tourId,
+    guideId,
+    planeTicketId,
     guestSize,
     phone,
     payment,
     status: BOOKING_STATUS.PENDING,
   });
   try {
+    const user = await User.findById(req.user.id);
     const savedBooking = await newBooking.save();
+    const emailInfo = await sendMail({
+      to: user.email,
+      subject: "Booking Confirmation for MERN Tours",
+      text: `Your booking is confirmed for ${savedBooking.createdAt}`,
+    });
     res.status(200).json({
       success: true,
-      message: "your tour is booked",
+      message: "your tour is booked and email is sent to your email",
       data: savedBooking,
     });
   } catch (err) {
@@ -67,6 +78,8 @@ export const getAllBooking = async (req, res) => {
     } else {
       const books = await Booking.find()
         .populate("tourId", "title city address")
+        .populate("guideId", "firstName lastName email phone")
+        .populate("planeTicketId", "departureAirport arrivalAirport")
         .populate("userId", "username email role")
         .sort({ createdAt: -1 }) // Sort by creation date descending
         .skip(page)
@@ -105,5 +118,51 @@ export const cancelBooking = async (req, res) => {
     }
   } catch (err) {
     res.status(404).json({ success: true, message: "not found" });
+  }
+};
+
+export const getMyBooking = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || ROW_PER_PAGE;
+    const page = (parseInt(req.query.page) - 1 || 0) * limit;
+    const books = await Booking.find({ userId: req.user.id })
+      .populate("tourId", "title city address")
+      .populate("guideId", "firstName lastName email phone")
+      .populate("planeTicketId", "departureAirport arrivalAirport")
+      .populate("userId", "username email role")
+      .sort({ createdAt: -1 })
+      .skip(page)
+      .limit(limit);
+    res.status(200).json({
+      success: true,
+      message: "successful",
+      data: books,
+    });
+  } catch (err) {
+    res.status(500).json({ success: true, message: "internal server error" });
+  }
+};
+
+export const getBookingByUserId = async (req, res) => {
+  const userId = req.params?.id;
+  if (!userId)
+    return res
+      .status(400)
+      .json({ success: false, message: "userId is required" });
+
+  try {
+    const books = await Booking.find({ userId })
+      .populate("tourId", "title city address")
+      .populate("guideId", "firstName lastName email phone")
+      .populate("planeTicketId", "departureAirport arrivalAirport")
+      .populate("userId", "username email role")
+      .sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      message: "successful",
+      data: books,
+    });
+  } catch (err) {
+    res.status(500).json({ success: true, message: "internal server error" });
   }
 };

@@ -39,6 +39,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.use(cookieParser());
+
+// routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/tours', tourRoute);
 app.use('/api/v1/users', userRoute);
