@@ -3,17 +3,18 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 
 import tourRoute from './routes/tours.js';
 import userRoute from './routes/users.js';
 import authRoute from './routes/auth.js';
 import reviewRoute from './routes/reviews.js';
 import bookingRoute from './routes/bookings.js';
-import morgan from 'morgan';
+import guideRoute from './routes/guide.js';
 
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 const corsOptions = {
   origin: true,
   credentials: true,
@@ -43,6 +44,7 @@ app.use('/api/v1/tours', tourRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/review', reviewRoute);
 app.use('/api/v1/booking', bookingRoute);
+app.use('/api/v1/guides', guideRoute);
 
 app.listen(port,()=>{
   connect();

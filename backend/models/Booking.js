@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import { BOOKING_STATUS } from "../data/index.js"
 
 const bookingSchema = new mongoose.Schema(
   {
@@ -20,17 +19,7 @@ const bookingSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-    },
-    status: {
-      // this can be only pending, cancelled, completed
-      type: String,
-      required: true,
-      default: BOOKING_STATUS.PENDING,
-    },
-    payment: {
-      type: Number,
-      default: null,
-    },
+    }
   },
   { timestamps: true }
 );

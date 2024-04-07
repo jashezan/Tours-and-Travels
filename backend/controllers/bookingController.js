@@ -1,5 +1,5 @@
 import Booking from "../models/Booking.js";
-import { BOOKING_STATUS } from "../data/index.js";
+import { BOOKING_STATUS, ROW_PER_PAGE } from "../data/index.js";
 
 // create new booking
 export const createBooking = async (req, res) => {
@@ -49,7 +49,7 @@ export const getAllBooking = async (req, res) => {
     // queries all the bookings by status
     let { status, page, limit } = req.query;
     const bookingStatus = status?.trim();
-    limit = parseInt(limit) || 10;
+    limit = parseInt(limit) || ROW_PER_PAGE;
     page = (parseInt(page) - 1 || 0) * limit;
     console.log(bookingStatus, page, limit);
     if (bookingStatus) {
