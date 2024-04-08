@@ -22,11 +22,12 @@ router.put('/:id',verifyAdmin, updateTour);
 // delete new tour
 router.delete('/:id',verifyAdmin, deleteTour);
 
+// get All tour
+router.get('/', getAllTour);
+
 // get single tour
 router.get('/:id', getSingleTour);
 
-// get All tour
-router.get('/', getAllTour);
 
 
 //get tour by search

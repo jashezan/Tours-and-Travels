@@ -11,6 +11,7 @@ import authRoute from './routes/auth.js';
 import reviewRoute from './routes/reviews.js';
 import bookingRoute from './routes/bookings.js';
 import guideRoute from './routes/guide.js';
+import paymentRoute from './routes/payment.js';
 
 dotenv.config();
 const app = express();
@@ -47,6 +48,7 @@ app.use('/api/v1/tours', tourRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/review', reviewRoute);
 app.use('/api/v1/guides', guideRoute);
+app.use('/api/v1/payment', paymentRoute);
 
 app.listen(port,()=>{
   connect();

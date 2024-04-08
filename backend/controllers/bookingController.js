@@ -31,6 +31,7 @@ export const createBooking = async (req, res) => {
       data: savedBooking,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json({ success: true, message: err.message });
   }
 };
