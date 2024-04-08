@@ -24,7 +24,7 @@ const SideDrawer = () => {
           variant="ghost"
           className=" d-flex align-items-center justify-content-between"
         >
-          <i class="ri-search-line"></i>
+          <i className="ri-search-line"></i>
           <Text d={{ base: "none", md: "flex" }} px="4">
             Search User
           </Text>

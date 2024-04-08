@@ -11,6 +11,8 @@ import ThankYou from '../pages/ThankYou';
 import Payment from '../pages/Payment';
 import Profile from '../pages/Profile'
 import Chats from '../pages/Chats';
+import Guides from '../pages/Guides';
+import GuideDetails from '../pages/GuideDetails';
 
 const Routers = () => {
   return (
@@ -18,6 +20,8 @@ const Routers = () => {
       <Route path='/' element={<Navigate to='/home'/>} />
       <Route path='/home' element={<Home />} />
       <Route path='/tours' element={<Tours />} />
+      <Route path='/guides' element={<Guides />} />
+      <Route path='/guides/:id' element={<GuideDetails />} />
       <Route path='/tours/:id' element={<TourDetails />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />

@@ -4,7 +4,7 @@ const ChatContext = createContext()
 
 const ChatProvider = ({children}) => {
     return (
-        <ChatContext.Provider>
+        <ChatContext.Provider value={{}}>
             {children}
         </ChatContext.Provider>
     )

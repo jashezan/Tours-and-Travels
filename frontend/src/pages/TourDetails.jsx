@@ -95,7 +95,7 @@ const TourDetails = () => {
 
                     <div className="d-flex align-items-center gap-5">
                       <span className='tour__rating d-flex alignt-items center gap-1'>
-                        <i class="ri-star-fill" style={{ 'color': 'var(--secondary-color)' }}></i>
+                        <i className="ri-star-fill" style={{ 'color': 'var(--secondary-color)' }}></i>
                         {avgRating === 0 ? null : avgRating}
                         {totalRating === 0 ? (
                           'Not rated'

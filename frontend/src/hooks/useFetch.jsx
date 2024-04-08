@@ -29,7 +29,6 @@ const useFetch = (url) => {
         fetchData()
         
     }, [url])
-    
     return {
         data,
         error,

@@ -31,6 +31,7 @@
 
 .nav__item a.active__link {
   color: var(--secondary-color);
+  font-weight: bold;
 }
 
 .mobile__menu {
@@ -41,7 +42,8 @@
 
 .sticky__header {
   width: 100%;
-  background: #fffd;
+  background: #fff9;
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   left: 0;
