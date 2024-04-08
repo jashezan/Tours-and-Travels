@@ -1,34 +1,32 @@
-import express from 'express'
+import express from "express";
 import {
-  createTour, 
-  deleteTour, 
-  getAllTour, 
-  getFeaturedTour, 
-  getSingleTour, 
-  getTourBySearch, 
+  createTour,
+  deleteTour,
+  getAllTour,
+  getFeaturedTour,
+  getSingleTour,
+  getTourBySearch,
   updateTour,
   getTourCount,
-} from './../controllers/tourController.js';
-import { verifyAdmin } from '../utils/verifyToken.js';
+} from "./../controllers/tourController.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
 // create new tour
-router.post('/', verifyAdmin,createTour);
+router.post("/", verifyAdmin, createTour);
 
 // update new tour
-router.put('/:id',verifyAdmin, updateTour);
+router.put("/:id", verifyAdmin, updateTour);
 
 // delete new tour
-router.delete('/:id',verifyAdmin, deleteTour);
+router.delete("/:id", verifyAdmin, deleteTour);
 
 // get All tour
-router.get('/', getAllTour);
+router.get("/", getAllTour);
 
 // get single tour
-router.get('/:id', getSingleTour);
-
-
+router.get("/:id", getSingleTour);
 
 //get tour by search
 router.get("/search/getTourBySearch", getTourBySearch);

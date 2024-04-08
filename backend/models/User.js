@@ -1,24 +1,23 @@
 import mongoose from "mongoose";
 import { USER_ROLE } from "../data/index.js";
 
-
 const userSchema = new mongoose.Schema(
   {
-    username:{
+    username: {
       type: String,
-      required : true,
+      required: true,
       unique: true,
     },
     email: {
       type: String,
-      required : true,
+      required: true,
       unique: true,
-    },    
-    password:{
-      type: String,
-      required : true,  
     },
-    photo:{
+    password: {
+      type: String,
+      required: true,
+    },
+    photo: {
       type: String,
     },
     role: {
@@ -26,7 +25,7 @@ const userSchema = new mongoose.Schema(
       default: USER_ROLE.USER,
     },
   },
-  {timestamps:true}
+  { timestamps: true }
 );
 
-export default mongoose.model("User",userSchema);
+export default mongoose.model("User", userSchema);

@@ -1,4 +1,4 @@
-import {createTransport} from "nodemailer";
+import { createTransport } from "nodemailer";
 
 const transporter = createTransport({
   service: "gmail",
@@ -16,4 +16,3 @@ const transporter = createTransport({
 const { sendMail } = transporter;
 
 export default sendMail.bind(transporter);
-

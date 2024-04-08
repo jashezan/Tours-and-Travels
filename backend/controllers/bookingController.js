@@ -1,6 +1,6 @@
 import Booking from "../models/Booking.js";
 import { BOOKING_STATUS, ROW_PER_PAGE } from "../data/index.js";
-import sendMail from "../config/nodemailer.js"
+import sendMail from "../config/nodemailer.js";
 import User from "../models/User.js";
 
 // create new booking
@@ -31,7 +31,7 @@ export const createBooking = async (req, res) => {
       data: savedBooking,
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json({ success: true, message: err.message });
   }
 };
@@ -118,13 +118,15 @@ export const cancelBooking = async (req, res) => {
       res.status(200).json({ success: true, message: "booking cancelled" });
     }
   } catch (err) {
-    res.status(404).json({ success: true, message: "Booking not found for Cancellation" });
+    res
+      .status(404)
+      .json({ success: true, message: "Booking not found for Cancellation" });
   }
 };
 
 export const getMyBooking = async (req, res) => {
   try {
-    console.log(req.user)
+    console.log(req.user);
     const limit = parseInt(req.query.limit) || ROW_PER_PAGE;
     const page = (parseInt(req.query.page) - 1 || 0) * limit;
     const books = await Booking.find({ userId: req.user?.id })
