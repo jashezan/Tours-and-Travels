@@ -1,22 +1,22 @@
-import express from 'express';
+import express from "express";
 import {
   createBooking,
   getAllBooking,
   getBooking,
   cancelBooking,
   getBookingByUserId,
-  getMyBooking
+  getMyBooking,
 } from "../controllers/bookingController.js";
 
-import { verifyAdmin,verifyUser } from '../utils/verifyToken.js'
+import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post('/', verifyUser, createBooking)
-router.get('/:id', verifyUser, getBooking)
-router.get('/', verifyAdmin, getAllBooking) // queries: status, page, limit
-router.patch('/cancel/:id', verifyUser, cancelBooking)
-router.get('/user/:id', verifyUser, getBookingByUserId) // queries: status, page, limit
-router.get('/mybooking', verifyUser, getMyBooking) // queries: status, page, limit
+router.get("/", verifyToken, verifyAdmin, getAllBooking); // queries: status, page, limit
+router.post("/", verifyToken, verifyUser, createBooking);
+router.get("/mybooking", verifyToken, verifyUser, getMyBooking); // queries: status, page, limit
+router.get("/user/:id", verifyToken, verifyUser, getBookingByUserId); // queries: status, page, limit
+router.patch("/cancel/:id", verifyToken, verifyUser, cancelBooking);
+router.get("/:id", verifyToken, verifyUser, getBooking);
 
 export default router;

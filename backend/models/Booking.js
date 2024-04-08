@@ -9,19 +9,16 @@ const bookingSchema = new mongoose.Schema(
     },
     tourId: {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: "Tour",
       default: null,
     },
     guideId: {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: "Guide",
       default: null,
     },
     planeTicketId: {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: "PlaneTicket",
       default: null,
     },
