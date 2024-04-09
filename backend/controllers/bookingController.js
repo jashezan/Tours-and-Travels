@@ -82,7 +82,6 @@ export const getAllBooking = async (req, res) => {
     }
     limit = parseInt(limit) || ROW_PER_PAGE;
     page = (parseInt(page) - 1 || 0) * limit;
-    console.error(" queries ", queries);
     const books = await Booking.find(queries)
       .populate("tourId", "title city address")
       .populate("guideId", "firstName lastName email phone")
