@@ -50,8 +50,11 @@ export const getBookingById = async (req, res) => {
     return res.status(400).json({ success: false, message: "id is required" });
 
   try {
-    const book = await Booking.findById(id);
-
+    const book = await Booking.findById(id)
+      .populate("userId")
+      .populate("tourId")
+      .populate("guideId")
+      .populate("planeTicketId");
     res.status(200).json({
       success: true,
       message: "successful",
@@ -120,7 +123,7 @@ export const cancelBooking = async (req, res) => {
     } else {
       book.status = BOOKING_STATUS.CANCELLED;
       await book.save();
-      res.status(204).json({ success: true, message: "booking cancelled" });
+      res.status(200).json({ success: true, message: "booking cancelled" });
     }
   } catch (err) {
     res
@@ -180,7 +183,7 @@ export const getBookingByUserId = async (req, res) => {
 /** @type {import('express').RequestHandler}  */
 export const makePayment = async (req, res) => {
   const id = req.params?.id;
-  const { paymentAmount, tourId, planeTicketId, guideId, userId } = req.body;
+  const { paymentAmount, tourId, planeTicketId, guideId } = req.body;
   if (!id)
     return res
       .status(400)

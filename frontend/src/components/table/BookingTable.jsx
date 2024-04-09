@@ -19,8 +19,8 @@ const BookingTable = ({ bookings }) => {
             <Th>User</Th>
             <Th>Tour</Th>
             <Th>Guest Size</Th>
-            <Th>Phone</Th>
             <Th>Created At</Th>
+            <Th>Payment Status</Th>
             <Th>Cancel</Th>
           </Tr>
         </Thead>

@@ -1,26 +1,18 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { Image } from "@chakra-ui/react";
 import "./tour-card.css";
 
 const GuideCard = ({ guide }) => {
-  const {
-    firstName,
-    image,
-    lastName,
-    phone,
-    pricePerHour,
-    rating,
-    _id,
-  } = guide;
-
+  const { firstName, image, lastName, phone, pricePerHour, rating, _id } =
+    guide;
 
   return (
     <div className="tour__card">
       <Card>
         <div className="tour__img">
-          <img src={image} alt="tour-img" />
+          <Image src={image} alt="tour-img" loading="lazy" />
         </div>
 
         <CardBody>
@@ -29,8 +21,7 @@ const GuideCard = ({ guide }) => {
               <i className="ri-map-pin-2-line"></i> {phone}
             </span>
             <span className="tour__rating d-flex alignt-items center gap-1">
-              <i className="ri-star-fill"></i>{" "}
-              {rating === 0 ? null : rating}
+              <i className="ri-star-fill"></i> {rating === 0 ? null : rating}
             </span>
           </div>
 

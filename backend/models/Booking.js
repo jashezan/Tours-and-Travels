@@ -25,11 +25,9 @@ const bookingSchema = new mongoose.Schema(
     },
     guestSize: {
       type: String,
-      required: true,
     },
     phone: {
       type: String,
-      required: true,
     },
     status: {
       type: String,

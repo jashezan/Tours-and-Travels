@@ -19,6 +19,6 @@ router.get("/mybooking", verifyToken, verifyUser, getMyBooking); // queries: sta
 router.post("/payment/:id", verifyToken, verifyUser, makePayment);
 router.get("/user/:id", verifyToken, verifyUser, getBookingByUserId); // queries: status, page, limit
 router.patch("/cancel/:id", verifyToken, verifyUser, cancelBooking);
-router.get("/:id", verifyToken, verifyUser, getBookingById);
+router.get("/:id", verifyToken, getBookingById);
 
 export default router;

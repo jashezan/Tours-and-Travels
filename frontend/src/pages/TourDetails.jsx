@@ -1,23 +1,23 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
-import '../styles/tour-details.css'
-import { Container, Row, Col, Form, ListGroup } from 'reactstrap'
-import { useParams } from 'react-router-dom'
-import calculateAvgRating from './../utils/avgRating'
-import avatar from '../assets/images/avatar.jpg'
-import Booking from '../components/Booking/Booking'
-import Newsletter from '../shared/Newsletter'
-import useFetch from './../hooks/useFetch'
-import { BASE_URL } from './../utils/config'
-import { AuthContext } from '../context/AuthContext'
+import React, { useEffect, useRef, useState, useContext } from "react";
+import "../styles/tour-details.css";
+import { Container, Row, Col, Form, ListGroup } from "reactstrap";
+import { useParams } from "react-router-dom";
+import calculateAvgRating from "./../utils/avgRating";
+import avatar from "../assets/images/avatar.jpg";
+import Booking from "../components/Booking/Booking";
+import Newsletter from "../shared/Newsletter";
+import useFetch from "./../hooks/useFetch";
+import { BASE_URL } from "./../utils/config";
+import { AuthContext } from "../context/AuthContext";
 
 const TourDetails = () => {
-  const { id } = useParams()
-  const reviewMsgRef = useRef('')
-  const [tourRating, setTourRating] = useState(null)
-  const { user } = useContext(AuthContext)
+  const { id } = useParams();
+  const reviewMsgRef = useRef("");
+  const [tourRating, setTourRating] = useState(null);
+  const { user } = useContext(AuthContext);
 
   // fetch data from database
-  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`)
+  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
 
   // destructure properties from tour object
   const {
@@ -29,76 +29,77 @@ const TourDetails = () => {
     reviews,
     city,
     distance,
-    maxGroupSize
-  } = tour
+    maxGroupSize,
+  } = tour;
 
-  const { totalRating, avgRating } = calculateAvgRating(reviews)
+  const { totalRating, avgRating } = calculateAvgRating(reviews);
 
   // format date
-  const options = { day: 'numeric', month: 'long', year: 'numeric' }
+  const options = { day: "numeric", month: "long", year: "numeric" };
 
   // submit request to the server
-  const submitHandler = async e => {
-    e.preventDefault()
-    const reviewText = reviewMsgRef.current.value
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const reviewText = reviewMsgRef.current.value;
 
     try {
-
       if (!user || user === undefined || user === null) {
-        alert('Please sign in')
+        alert("Please sign in");
       }
 
       const reviewObj = {
         username: user?.username,
         reviewText,
-        rating: tourRating
-      }
+        rating: tourRating,
+      };
 
       const res = await fetch(`${BASE_URL}/review/${id}`, {
-        method: 'post',
+        method: "post",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
         },
-        credentials: 'include',
-        body: JSON.stringify(reviewObj)
-      })
+        credentials: "include",
+        body: JSON.stringify(reviewObj),
+      });
 
-      const result = await res.json()
+      const result = await res.json();
       if (!res.ok) {
-        return alert(result.message)
+        return alert(result.message);
       }
 
-      alert(result.message)
-
+      alert(result.message);
     } catch (err) {
-      alert(err.message)
+      alert(err.message);
     }
-  }
+  };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [tour])
+    window.scrollTo(0, 0);
+  }, [tour]);
 
   return (
     <>
       <section>
         <Container>
-          {loading && <h4 className='text-center pt-5'>Loading.......</h4>}
-          {error && <h4 className='text-center pt-5'>{error}</h4>}
-          {
-            !loading && !error && <Row>
-              <Col lg='8'>
+          {loading && <h4 className="text-center pt-5">Loading.......</h4>}
+          {error && <h4 className="text-center pt-5">{error}</h4>}
+          {!loading && !error && (
+            <Row>
+              <Col lg="8">
                 <div className="tour__content">
                   <img src={photo} alt="" />
                   <div className="tour__info">
                     <h2>{title}</h2>
 
                     <div className="d-flex align-items-center gap-5">
-                      <span className='tour__rating d-flex alignt-items center gap-1'>
-                        <i className="ri-star-fill" style={{ 'color': 'var(--secondary-color)' }}></i>
+                      <span className="tour__rating d-flex alignt-items center gap-1">
+                        <i
+                          className="ri-star-fill"
+                          style={{ color: "var(--secondary-color)" }}
+                        ></i>
                         {avgRating === 0 ? null : avgRating}
                         {totalRating === 0 ? (
-                          'Not rated'
+                          "Not rated"
                         ) : (
                           <span>({reviews?.length})</span>
                         )}
@@ -107,14 +108,14 @@ const TourDetails = () => {
                       <span>
                         <i className="ri-map-pin-user-fill"></i> {address}
                       </span>
-
                     </div>
                     <div className="tour__extra-details">
                       <span>
                         <i className="ri-map-pin-2-line"></i> {city}
                       </span>
                       <span>
-                        <i className="ri-money-dollar-circle-line"></i> {price} / person
+                        <i className="ri-money-dollar-circle-line"></i> {price}{" "}
+                        / person
                       </span>
                       <span>
                         <i className="ri-map-pin-time-line"></i> {distance} / km
@@ -160,53 +161,53 @@ const TourDetails = () => {
                         />
                         <button
                           className="btn primary__btn text-white"
-                          type='submit'
+                          type="submit"
                         >
                           Submit
                         </button>
                       </div>
                     </Form>
 
-                    <ListGroup className='user__reviews'>
-                      {
-                        reviews?.map(review => (
-                          <div className="review__item">
-                            <img src={avatar} alt="" />
+                    <ListGroup className="user__reviews">
+                      {reviews?.map((review) => (
+                        <div className="review__item">
+                          <img src={avatar} alt="" />
 
-                            <div className="w-100">
-                              <div className='d-flex align-items-center justify-content-between'>
-                                <div>
-                                  <h5>{review.username}</h5>
-                                  <p>
-                                    {new Date(review.createdAt).toLocaleDateString('en-US', options)}
-                                  </p>
-                                </div>
-                                <span className='d-flex align-items-center'>
-                                  {review.rating}
-                                  <i className="ri-star-s-fill"></i>
-                                </span>
+                          <div className="w-100">
+                            <div className="d-flex align-items-center justify-content-between">
+                              <div>
+                                <h5>{review.username}</h5>
+                                <p>
+                                  {new Date(
+                                    review.createdAt
+                                  ).toLocaleDateString("en-US", options)}
+                                </p>
                               </div>
-                              <h6>{review.reviewText}</h6>
+                              <span className="d-flex align-items-center">
+                                {review.rating}
+                                <i className="ri-star-s-fill"></i>
+                              </span>
                             </div>
+                            <h6>{review.reviewText}</h6>
                           </div>
-                        ))
-                      }
+                        </div>
+                      ))}
                     </ListGroup>
                   </div>
                   {/* ========= tour reviews section end ========= */}
                 </div>
               </Col>
 
-              <Col lg='4'>
+              <Col lg="4">
                 <Booking tour={tour} avgRating={avgRating} />
               </Col>
             </Row>
-          }
+          )}
         </Container>
       </section>
       <Newsletter />
     </>
-  )
-}
+  );
+};
 
-export default TourDetails
+export default TourDetails;

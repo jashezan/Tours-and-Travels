@@ -18,10 +18,9 @@ const Tours = () => {
     data: tours,
     loading,
     error,
-  } = useFetch(`${BASE_URL}/guides?page=${page}`);
+  } = useFetch(`${BASE_URL}/tours?page=${page}`);
 
   const { data: tourCount } = useFetch(`${BASE_URL}/tours/search/getTourCount`);
-  console.log(tours, loading, error);
   useEffect(() => {
     const pages = Math.ceil(tourCount / 8);
     setPageCount(pages);
@@ -41,7 +40,7 @@ const Tours = () => {
       <section className="pt-0">
         <Container>
           {loading && <h4 className="text-center pt-5">Loading......</h4>}
-          {error && <h4 className="text-center pt-5">{error}</h4>}
+          {error && <h1 className="text-center pt-5">{error}</h1>}
           {!loading && !error && (
             <Row>
               {tours.map((tour) => (

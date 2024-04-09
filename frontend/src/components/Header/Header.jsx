@@ -1,63 +1,62 @@
-import React, { useRef, useEffect, useContext } from 'react'
-import { Container, Row, Button } from 'reactstrap'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-
+import React, { useRef, useEffect, useContext } from "react";
+import { Container, Row, Button } from "reactstrap";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { Image, Tooltip } from "@chakra-ui/react";
 import logo from "../../assets/images/logo512.png";
-import './header.css'
+import "./header.css";
 
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from "../../context/AuthContext";
 
 const nav__links = [
   {
-    path: '/home',
-    display: 'Home'
+    path: "/home",
+    display: "Home",
   },
   {
-    path: '/about',
-    display: 'About'
+    path: "/about",
+    display: "About",
   },
   {
-    path: '/chats',
-    display: 'Chat'
+    path: "/chats",
+    display: "Chat",
   },
   {
-    path: '/tours',
-    display: 'Tours'
+    path: "/tours",
+    display: "Tours",
   },
   {
-    path: '/guides',
-    display: 'Guides'
+    path: "/guides",
+    display: "Guides",
   },
-]
-
+];
 
 const Header = () => {
-  const headerRef = useRef(null)
-  const navigate = useNavigate()
-  const { user, dispatch } = useContext(AuthContext)
+  const headerRef = useRef(null);
+  const navigate = useNavigate();
+  const { user, dispatch } = useContext(AuthContext);
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' })
-    navigate('/')
-  }
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
 
   const stickyHeaderFunc = () => {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current.classList.add('sticky__header')
+        headerRef.current.classList.add("sticky__header");
       } else {
-        headerRef.current.classList.remove('sticky__header')
+        headerRef.current.classList.remove("sticky__header");
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    stickyHeaderFunc()
-    return window.removeEventListener('scroll', stickyHeaderFunc)
-  })
+    stickyHeaderFunc();
+    return window.removeEventListener("scroll", stickyHeaderFunc);
+  });
 
   return (
     <header className="header" ref={headerRef}>
@@ -95,9 +94,22 @@ const Header = () => {
               <div className="nav__btns d-flex align-items-center gap-4">
                 {user ? (
                   <>
-                    <Button className="btn secondary__btn">
-                      <Link to="/profile">{user.username.toUpperCase()}</Link>
-                    </Button>
+                    <Tooltip
+                      label={user.username.toUpperCase()}
+                      aria-label="A tooltip"
+                    >
+                      <Link to="/profile" className="user_name">
+                        <Image
+                          src="https://www.svgrepo.com/show/13656/user.svg"
+                          style={{
+                            width: "2.5rem",
+                            height: "2.5rem",
+                            borderRadius: "50%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </Link>
+                    </Tooltip>
                     <Button className="btn btn-dark" onClick={logout}>
                       Logout
                     </Button>
@@ -123,6 +135,6 @@ const Header = () => {
       </Container>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

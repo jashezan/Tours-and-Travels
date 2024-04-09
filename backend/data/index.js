@@ -1,4 +1,4 @@
-export const ROW_PER_PAGE = 10;
+export const ROW_PER_PAGE = 50;
 
 const _BOOKING_STATUS = {
   PENDING: "PENDING",

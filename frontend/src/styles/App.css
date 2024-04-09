@@ -94,3 +94,8 @@ ul {
   color: var(--heading-color);
 }
 
+.user_name {
+  font-size: 0.5rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
