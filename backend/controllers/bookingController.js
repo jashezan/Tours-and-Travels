@@ -23,12 +23,10 @@ export const makeBooking = async (req, res) => {
     status: BOOKING_STATUS.PENDING,
   });
   if (!tourId && !guideId && !planeTicketId) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "tourId, guideId or planeTicketId is required",
-      });
+    return res.status(400).json({
+      success: false,
+      message: "tourId, guideId or planeTicketId is required",
+    });
   }
   try {
     const user = await User.findById(req.user.id);
@@ -65,7 +63,7 @@ export const getBookingById = async (req, res) => {
       .populate("planeTicketId");
     res.status(200).json({
       success: true,
-      message: "successful",
+      message: "successfully got the booking",
       data: book,
     });
   } catch (err) {
@@ -149,7 +147,7 @@ export const getMyBooking = async (req, res) => {
       .populate("guideId", "firstName lastName email phone")
       .populate("planeTicketId")
       .populate("userId", "username email role")
-      .sort({ createdAt: -1})
+      .sort({ createdAt: -1 })
       .skip(page)
       .limit(limit);
     res.status(200).json({
@@ -241,5 +239,23 @@ export const getAllPlaneTicket = async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ success: true, message: err?.message });
+  }
+};
+
+/** @type {import('express').RequestHandler}  */
+export const deleteBooking = async (req, res) => {
+  const id = req.params?.id;
+  if (!id)
+    return res.status(400).json({ success: false, message: "id is required" });
+
+  try {
+    const book = await Booking.findByIdAndDelete(id);
+    if (book) {
+      res.status(200).json({ success: true, message: "Booking deleted successfully" });
+    } else {
+      res.status(404).json({ success: true, message: "Booking not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, message: err?.message });
   }
 };

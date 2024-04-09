@@ -63,10 +63,10 @@ const Header = () => {
   });
 
   return (
-    <header className="header" ref={headerRef}>
+    <header id="navId" className="header" ref={headerRef}>
       <Container>
         <Row>
-          <div className="nav__wrapper d-flex align-items-center justify-content-between">
+          <nav className="nav__wrapper d-flex align-items-center justify-content-between">
             {/* =========logo start========= */}
             <div className="logo">
               <Link to="/">
@@ -113,7 +113,7 @@ const Header = () => {
                                   borderRadius: "50%",
                                   objectFit: "cover",
                                 }
-                                : {
+                              : {
                                   backgroundColor: "green",
                                   width: "2.5rem",
                                   height: "2.5rem",
@@ -144,7 +144,7 @@ const Header = () => {
                 <i className="ri-menu-line"></i>
               </span>
             </div>
-          </div>
+          </nav>
         </Row>
       </Container>
     </header>

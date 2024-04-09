@@ -50,3 +50,11 @@
   box-shadow: 3px 3px 8px -3px #241717;
   z-index: 999;
 }
+
+.admin__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color);
+  backdrop-filter: blur(10px);
+}

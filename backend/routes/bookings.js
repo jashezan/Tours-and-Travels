@@ -8,6 +8,7 @@ import {
   getMyBooking,
   makePayment,
   getAllPlaneTicket,
+  deleteBooking
 } from "../controllers/bookingController.js";
 
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
@@ -21,6 +22,7 @@ router.get("/mybooking", verifyToken, verifyUser, getMyBooking); // queries: sta
 router.post("/payment/:id", verifyToken, verifyUser, makePayment);
 router.get("/user/:id", verifyToken, verifyUser, getBookingByUserId); // queries: status, page, limit
 router.patch("/cancel/:id", verifyToken, verifyUser, cancelBooking);
+router.delete("/:id", verifyAdmin, deleteBooking);
 router.get("/:id", verifyToken, getBookingById);
 
 export default router;
