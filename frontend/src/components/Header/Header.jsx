@@ -105,12 +105,22 @@ const Header = () => {
                       <Link to="/profile" className="user_name">
                         <Image
                           src="https://www.svgrepo.com/show/13656/user.svg"
-                          style={{
-                            width: "2.5rem",
-                            height: "2.5rem",
-                            borderRadius: "50%",
-                            objectFit: "cover",
-                          }}
+                          style={
+                            user?.role === "admin"
+                              ? {
+                                  width: "2.5rem",
+                                  height: "2.5rem",
+                                  borderRadius: "50%",
+                                  objectFit: "cover",
+                                }
+                                : {
+                                  backgroundColor: "green",
+                                  width: "2.5rem",
+                                  height: "2.5rem",
+                                  borderRadius: "50%",
+                                  objectFit: "cover",
+                                }
+                          }
                         />
                       </Link>
                     </Tooltip>

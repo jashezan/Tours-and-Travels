@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/login.css";
+import "../../styles/login.css";
 
-import loginImg from "../assets/images/login.png";
-import userIcon from "../assets/images/user.png";
+import loginImg from "../../assets/images/login.png";
+import userIcon from "../../assets/images/user.png";
 
-import { AuthContext } from "./../context/AuthContext";
-import { BASE_URL } from "./../utils/config";
+import { AuthContext } from "./../../context/AuthContext";
+import { BASE_URL } from "./../../utils/config";
 
-const Login = () => {
+const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
     email: undefined,
     password: undefined,
@@ -28,7 +28,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
 
     try {
-      const res = await fetch(`${BASE_URL}/auth/login`, {
+      const res = await fetch(`${BASE_URL}/auth/admin/login`, {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -43,7 +43,7 @@ const Login = () => {
       console.log(result.data);
 
       dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
-      navigate("/");
+      navigate("/admin/booking");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.message });
     }
@@ -63,27 +63,27 @@ const Login = () => {
                 <div className="user">
                   <img src={userIcon} alt="" />
                 </div>
-                <h2>Login</h2>
+                <h2>Admin Login</h2>
 
                 <Form onSubmit={handleClick}>
                   <FormGroup>
                     <input
                       type="email"
-                      autoComplete="email"
                       placeholder="Email"
                       required
                       id="email"
                       onChange={handleChange}
+                      autoComplete="email"
                     />
                   </FormGroup>
                   <FormGroup>
                     <input
                       type="password"
-                      autoComplete="current-password"
                       placeholder="Password"
                       required
                       id="password"
                       onChange={handleChange}
+                      autoComplete="current-password"
                     />
                   </FormGroup>
                   <Button
@@ -93,10 +93,6 @@ const Login = () => {
                     Login
                   </Button>
                 </Form>
-                <p>
-                  Don't have an account?{" "}
-                  <Link to="/register">Create account</Link>
-                </p>
               </div>
             </div>
           </Col>
@@ -106,4 +102,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;
