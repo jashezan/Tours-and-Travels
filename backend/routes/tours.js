@@ -13,6 +13,11 @@ import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
+//get tour by search
+router.get("/search/getTourBySearch", getTourBySearch);
+router.get("/search/getFeaturedTours", getFeaturedTour);
+router.get("/search/getTourCount", getTourCount);
+
 // create new tour
 router.post("/", verifyAdmin, createTour);
 
@@ -27,10 +32,5 @@ router.get("/", getAllTour);
 
 // get single tour
 router.get("/:id", getSingleTour);
-
-//get tour by search
-router.get("/search/getTourBySearch", getTourBySearch);
-router.get("/search/getFeaturedTours", getFeaturedTour);
-router.get("/search/getTourCount", getTourCount);
 
 export default router;
