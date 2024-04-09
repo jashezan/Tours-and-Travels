@@ -15,19 +15,28 @@ import {
 } from "@chakra-ui/react";
 import { BASE_URL } from "../../utils/config";
 
-const AdminBooking = () => {
-  const [bookings, setBookings] = useState([]);
+const AdminPlane = () => {
+  const [planeTickets, setPlaneTickets] = useState([]);
   useEffect(() => {
-    fetch(`${BASE_URL}/booking`, {
+    fetch(`${BASE_URL}/booking/plane-ticket`, {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => setBookings(data?.data))
-      .catch((err) => console.error(err));
+      .then((data) => setPlaneTickets(data?.data))
+      .catch((err) => {
+        toast({
+          title: "An error occurred.",
+          description: err.message,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        console.error(err);
+      });
   }, []);
   const toast = useToast();
   const toastIdRef = React.useRef();
-  const deleteBooking = async (bookingId) => {
+  const deleteGuide = async (guideId) => {
     const addToast = (msg, state) => {
       toastIdRef.current = toast({
         description: msg,
@@ -39,7 +48,7 @@ const AdminBooking = () => {
     const updateToast = (newMsg, state) => {
       if (toastIdRef.current) {
         toast.update(toastIdRef.current, {
-          description: newMsg,
+          description: newMsg || "successful",
           status: state || "info",
         });
       }
@@ -47,7 +56,7 @@ const AdminBooking = () => {
 
     try {
       addToast("Deleting...");
-      const response = await fetch(`${BASE_URL}/booking/${bookingId}`, {
+      const response = await fetch(`${BASE_URL}/guides/${guideId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -56,7 +65,7 @@ const AdminBooking = () => {
       });
       const res = await response.json();
       console.log(res);
-      updateToast(res.message, "success");
+      updateToast(res?.message, "success");
     } catch (error) {
       console.error(error);
       updateToast("Deletetion Failed", "error");
@@ -64,7 +73,7 @@ const AdminBooking = () => {
   };
   return (
     <AdminLayout>
-      <h1>Booking</h1>
+      <h1>Flights</h1>
       <TableContainer
         style={{
           margin: "20px auto",
@@ -73,67 +82,49 @@ const AdminBooking = () => {
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Tour / Guide / Plane</Th>
-              <Th>Name</Th>
-              <Th>Booked At</Th>
-              <Th>Payment Status</Th>
-              <Th>Cancelled</Th>
-              <Th>Delete</Th>
+              <Th>Airline</Th>
+              <Th>Flight Number</Th>
+              <Th>From</Th>
+              <Th>To</Th>
+              <Th>Price</Th>
+              {/* <Th>Delete</Th> */}
             </Tr>
           </Thead>
           <Tbody>
-            {bookings?.length > 0 &&
-              bookings?.map((booking) => (
-                <Tr key={booking?._id}>
+            {planeTickets?.length > 0 &&
+              planeTickets?.map((planeTicket) => (
+                <Tr key={planeTicket?._id}>
+                  <Td>{planeTicket?.airline}</Td>
+                  <Td>{planeTicket?.flightNumber}</Td>
                   <Td>
-                    {booking?.tourId !== null
-                      ? "Tour"
-                      : booking?.guideId !== null
-                      ? "Guide"
-                      : booking?.planeTicketId !== null
-                      ? "Plane Ticket"
-                      : "No Booking"}
+                    <Tooltip
+                      label={`Departure Time: ${new Date(
+                        planeTicket?.departureDateTime
+                      ).toLocaleString("en-US", { timeZoneName: "short" })}`}
+                      aria-label="A tooltip"
+                    >
+                      {planeTicket?.departureAirport}
+                    </Tooltip>
                   </Td>
                   <Td>
-                    {booking?.tourId !== null ? (
-                      <Text>
-                        <Tooltip label={`Guest Size: ${booking?.guestSize}`}>
-                          {`${booking?.tourId.title} (${booking?.guestSize})`}
-                        </Tooltip>
-                      </Text>
-                    ) : booking?.guideId !== null ? (
-                      `${booking?.guideId.firstName} ${booking?.guideId.lastName}`
-                    ) : booking?.planeTicketId !== null ? (
-                      booking?.planeTicketId.airline
-                    ) : (
-                      "No Booking"
-                    )}
+                    <Tooltip
+                      label={`Arrival Time: ${new Date(
+                        planeTicket?.arrivalDateTime
+                      ).toLocaleString("en-US", { timeZoneName: "short" })}`}
+                      aria-label="A tooltip"
+                    >
+                      {planeTicket?.arrivalAirport}
+                    </Tooltip>
                   </Td>
-                  <Td>{new Date(booking?.createdAt).toLocaleDateString()}</Td>
-                  <Td>
-                    {booking?.paymentAmount !== null ? (
-                      <span style={{ color: "green" }}>Paid</span>
-                    ) : booking?.status === "CANCELLED" ? (
-                      <span style={{ color: "red" }}>Cancelled</span>
-                    ) : (
-                      <span style={{ color: "red" }}>Unpaid</span>
-                    )}
-                  </Td>
-                  <Td>
-                    {booking?.status === "CANCELLED" ? (
-                      <span style={{ color: "red" }}>Cancelled</span>
-                    ) : (
-                      <span>Active</span>
-                    )}
-                  </Td>
-                  <Td>
+                  <Td>{planeTicket?.price}</Td>
+                  {/* <Td>
                     <Button
                       colorScheme="red"
-                      onClick={() => deleteBooking(booking?._id)}
+                      onClick={() => deleteGuide(planeTicket?._id)}
                     >
                       Delete
                     </Button>
-                  </Td>
+                  </Td> */}
                 </Tr>
               ))}
           </Tbody>
@@ -143,4 +134,4 @@ const AdminBooking = () => {
   );
 };
 
-export default AdminBooking;
+export default AdminPlane;

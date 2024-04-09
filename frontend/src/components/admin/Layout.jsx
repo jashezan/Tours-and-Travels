@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
       <Card minWidth="20%">
         <Sidebar />
       </Card>
-      <Box maxWidth="75%">{children}</Box>
+      <Box maxWidth="80%">{children}</Box>
     </Stack>
   );
 };

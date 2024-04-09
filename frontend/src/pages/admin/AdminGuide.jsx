@@ -16,18 +16,27 @@ import {
 import { BASE_URL } from "../../utils/config";
 
 const AdminGuide = () => {
-  const [bookings, setBookings] = useState([]);
+  const [guides, setGuides] = useState([]);
   useEffect(() => {
-    fetch(`${BASE_URL}/booking`, {
+    fetch(`${BASE_URL}/guides`, {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => setBookings(data?.data))
-      .catch((err) => console.error(err));
+      .then((data) => setGuides(data))
+      .catch((err) => {
+        toast({
+          title: "An error occurred.",
+          description: err.message,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        console.error(err);
+      });
   }, []);
   const toast = useToast();
   const toastIdRef = React.useRef();
-  const deleteBooking = async (bookingId) => {
+  const deleteGuide = async (guideId) => {
     const addToast = (msg, state) => {
       toastIdRef.current = toast({
         description: msg,
@@ -47,7 +56,7 @@ const AdminGuide = () => {
 
     try {
       addToast("Deleting...");
-      const response = await fetch(`${BASE_URL}/booking/${bookingId}`, {
+      const response = await fetch(`${BASE_URL}/guides/${guideId}`, {
         method: "DELETE",
         credentials: "include",
         headers: {
@@ -64,7 +73,7 @@ const AdminGuide = () => {
   };
   return (
     <AdminLayout>
-      <h1>Booking</h1>
+      <h1>Guides</h1>
       <TableContainer
         style={{
           margin: "20px auto",
@@ -73,63 +82,27 @@ const AdminGuide = () => {
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Tour / Guide / Plane</Th>
               <Th>Name</Th>
-              <Th>Booked At</Th>
-              <Th>Payment Status</Th>
-              <Th>Cancelled</Th>
+              <Th>Email</Th>
+              <Th>Phone</Th>
+              <Th>Fee(Per Hour)</Th>
+              <Th>Rating</Th>
               <Th>Delete</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {bookings?.length > 0 &&
-              bookings?.map((booking) => (
-                <Tr key={booking?._id}>
-                  <Td>
-                    {booking?.tourId !== null
-                      ? "Tour"
-                      : booking?.guideId !== null
-                      ? "Guide"
-                      : booking?.planeTicketId !== null
-                      ? "Plane Ticket"
-                      : "No Booking"}
-                  </Td>
-                  <Td>
-                    {booking?.tourId !== null ? (
-                      <Text>
-                        <Tooltip label={`Guest Size: ${booking?.guestSize}`}>
-                          {`${booking?.tourId.title} (${booking?.guestSize})`}
-                        </Tooltip>
-                      </Text>
-                    ) : booking?.guideId !== null ? (
-                      `${booking?.guideId.firstName} ${booking?.guideId.lastName}`
-                    ) : booking?.planeTicketId !== null ? (
-                      booking?.planeTicketId.airline
-                    ) : (
-                      "No Booking"
-                    )}
-                  </Td>
-                  <Td>{new Date(booking?.createdAt).toLocaleDateString()}</Td>
-                  <Td>
-                    {booking?.paymentAmount !== null ? (
-                      <span style={{ color: "green" }}>Paid</span>
-                    ) : booking?.status === "CANCELLED" ? (
-                      <span style={{ color: "red" }}>Cancelled</span>
-                    ) : (
-                      <span style={{ color: "red" }}>Unpaid</span>
-                    )}
-                  </Td>
-                  <Td>
-                    {booking?.status === "CANCELLED" ? (
-                      <span style={{ color: "red" }}>Cancelled</span>
-                    ) : (
-                      <span>Active</span>
-                    )}
-                  </Td>
+            {guides?.length > 0 &&
+              guides?.map((guide) => (
+                <Tr key={guide?._id}>
+                  <Td>{`${guide?.firstName} ${guide?.lastName}`}</Td>
+                  <Td>{guide?.email}</Td>
+                  <Td>{guide?.phone}</Td>
+                  <Td>{guide?.pricePerHour}</Td>
+                  <Td>{guide?.rating}</Td>
                   <Td>
                     <Button
                       colorScheme="red"
-                      onClick={() => deleteBooking(booking?._id)}
+                      onClick={() => deleteGuide(guide?._id)}
                     >
                       Delete
                     </Button>

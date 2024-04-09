@@ -8,6 +8,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
+import "./admin.styles.css";
 
 const adminList = [
   {
@@ -36,39 +37,21 @@ const adminList = [
   },
 ];
 
-const AdminSidebarItem = ({ path, display, icon, isOpen, toggleIsOpen }) => {
+const AdminSidebarItem = ({ path, display, isOpen, toggleIsOpen }) => {
   const location = useLocation();
-  const bgColor = location.pathname === path ? "green.100" : "transparent";
-  const color = isOpen ? "teal.500" : "gray.700";
+  const bgColor = location.pathname === path ? "limegreen" : "transparent";
+
   return (
-    <Box
-      as="button"
+    <Link
+      to={path}
+      className="sidebar__link"
+      style={{
+        backgroundColor: bgColor,
+      }}
       onClick={toggleIsOpen}
-      transitionProperty="background-color, color"
-      _hover={{ bgColor: "green.200" }}
-      bgColor={bgColor}
-      color={color}
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      fontWeight="semibold"
-      borderRadius="md"
     >
-      <Link to={path}>
-        <Flex
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            fontWeight: "semibold",
-            padding: "0.75rem",
-            borderRadius: "0.375rem",
-          }}
-        >
-          <Text ml={3}>{display}</Text>
-        </Flex>
-      </Link>
-    </Box>
+      <Text ml={3}>{display}</Text>
+    </Link>
   );
 };
 
@@ -77,16 +60,10 @@ const AdminSidebar = () => {
   const location = useLocation();
 
   return (
-    <Box
-      top={0}
-      left={0}
-      minH={"100vh"}
-      bg={useColorModeValue("gray.50", "teal.500")}
-      transitionProperty="background-color"
-    >
-      <Flex direction="column" p={3} h="100%">
-        <Link to="/admin" display="flex">
-          <Text fontSize="lg" fontWeight="bold">
+    <Box minH={"100vh"} transitionProperty="background-color">
+      <Flex direction="column" h="100%">
+        <Link to="/admin/booking" display="flex">
+          <Text fontSize="lg" fontWeight="bold" textAlign={"center"}>
             Admin Panel
           </Text>
         </Link>
