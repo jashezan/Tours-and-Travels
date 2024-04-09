@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "./../utils/config.js";
 import { AuthContext } from "../context/AuthContext.jsx";
-import { Image, Text, Button, Stack } from "@chakra-ui/react";
+import { Image, Text, Button, Stack, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 
 const GuideDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const toast = useToast();
   const [guide, setGuide] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
@@ -18,6 +19,13 @@ const GuideDetails = () => {
       .catch((err) => console.log(err));
   }, []);
   const bookGuide = async () => {
+    toast({
+      title: "We Recieved Your Request!",
+      description: "Please wait for the confirmation.",
+      status: "info",
+      duration: 9000,
+      isClosable: true,
+    });
     try {
       fetch(`${BASE_URL}/booking`, {
         method: "POST",

@@ -13,13 +13,11 @@ const BookingTable = ({ bookings }) => {
   return (
     <TableContainer>
       <Table variant="simple">
-        <TableCaption>My Booking Table</TableCaption>
         <Thead>
           <Tr>
-            <Th>User</Th>
-            <Th>Tour</Th>
-            <Th>Guest Size</Th>
-            <Th>Created At</Th>
+            <Th>Tour / Guide / Plane</Th>
+            <Th>Name</Th>
+            <Th>Booked At</Th>
             <Th>Payment Status</Th>
             <Th>Cancel</Th>
           </Tr>

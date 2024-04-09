@@ -13,6 +13,8 @@ import Profile from '../pages/Profile'
 import Chats from '../pages/Chats';
 import Guides from '../pages/Guides';
 import GuideDetails from '../pages/GuideDetails';
+import Plane from '../pages/Plane';
+import About from '../pages/About';
 
 const Routers = () => {
   return (
@@ -21,6 +23,7 @@ const Routers = () => {
       <Route path='/home' element={<Home />} />
       <Route path='/tours' element={<Tours />} />
       <Route path='/guides' element={<Guides />} />
+      <Route path='/plane' element={<Plane />} />
       <Route path='/guides/:id' element={<GuideDetails />} />
       <Route path='/tours/:id' element={<TourDetails />} />
       <Route path='/login' element={<Login />} />
@@ -29,7 +32,7 @@ const Routers = () => {
       <Route path='/tours/search' element={<SearchResultList />} />
       <Route path='/payment/:id' element={<Payment />} />
       <Route path='/profile' element={<Profile />} />
-
+      <Route path='/about' element={<About />} />
       <Route path='/chats' element={<Chats />} />
     </Routes>
   )

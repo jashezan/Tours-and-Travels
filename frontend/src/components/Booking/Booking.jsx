@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
-
+import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../utils/config";
@@ -9,7 +9,7 @@ import { BASE_URL } from "../../utils/config";
 const Booking = ({ tour, avgRating }) => {
   const { price, reviews, title } = tour;
   const navigate = useNavigate();
-
+  const toast = useToast();
   const { user } = useContext(AuthContext);
 
   const [booking, setBooking] = useState({
@@ -35,6 +35,13 @@ const Booking = ({ tour, avgRating }) => {
       if (!user || user === undefined || user === null) {
         return alert("please sign in");
       }
+      toast({
+        title: "We Recieved Your Request!",
+        description: "Please wait for the confirmation.",
+        status: "info",
+        duration: 9000,
+        isClosable: true,
+      });
       fetch(`${BASE_URL}/booking`, {
         method: "POST",
         credentials: "include",

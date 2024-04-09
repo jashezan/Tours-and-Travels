@@ -29,7 +29,6 @@ const Payment = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const navigate = useNavigate();
-  const toast = useToast();
   useEffect(() => {
     fetch(`${BASE_URL}/booking/${id}`, {
       method: "GET",
@@ -43,43 +42,46 @@ const Payment = () => {
       .then((data) => setData(data.data))
       .catch((err) => console.error(err));
   }, []);
-  const makePayment = async () => {
+  const toast = useToast();
+  const toastIdRef = React.useRef();
+  const makePayment = async (totalAmount) => {
+    const addToast = (msg, state) => {
+      toastIdRef.current = toast({
+        description: msg,
+        status: state || "info",
+        duration: 9000,
+        isClosable: true,
+      });
+    };
+    const updateToast = (newMsg, state) => {
+      if (toastIdRef.current) {
+        toast.update(toastIdRef.current, {
+          description: newMsg,
+          status: state || "info",
+        });
+      }
+    };
+
     try {
+      addToast("Payment in progress...");
       const response = await fetch(`${BASE_URL}/booking/payment/${id}`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          paymentAmount: getTotalAmount(data),
+          paymentAmount: totalAmount,
         }),
       });
       const res = await response.json();
-      if (!res.ok) {
-        return alert(result.message);
-      } else {
-        toast({
-          title: "Payment Status",
-          description: res.message,
-          status: res.status,
-          duration: 9000,
-          isClosable: true,
-        });
-        navigate("/thank-you");
-      }
+      updateToast(res.message, "success");
+      navigate("/thank-you");
     } catch (error) {
-      toast({
-        title: "Payment Status",
-        description: "Payment Failed",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
+      console.error(error);
+      updateToast("Payment Failed", "error");
     }
   };
-  console.log(data);
   if (data) {
     return (
       <Container>
@@ -127,7 +129,10 @@ const Payment = () => {
               ) : (
                 <>
                   <Text>Payable Amount: {getTotalAmount(data)}</Text>
-                  <Button colorScheme="green" onClick={makePayment}>
+                  <Button
+                    colorScheme="green"
+                    onClick={() => makePayment(getTotalAmount(data))}
+                  >
                     Pay
                   </Button>
                 </>

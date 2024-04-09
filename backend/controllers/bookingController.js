@@ -22,6 +22,14 @@ export const makeBooking = async (req, res) => {
     payment,
     status: BOOKING_STATUS.PENDING,
   });
+  if (!tourId && !guideId && !planeTicketId) {
+    return res
+      .status(400)
+      .json({
+        success: false,
+        message: "tourId, guideId or planeTicketId is required",
+      });
+  }
   try {
     const user = await User.findById(req.user.id);
     const savedBooking = await newBooking.save();
@@ -87,7 +95,7 @@ export const getAllBooking = async (req, res) => {
     const books = await Booking.find(queries)
       .populate("tourId", "title city address")
       .populate("guideId", "firstName lastName email phone")
-      .populate("planeTicketId", "departureAirport arrivalAirport")
+      .populate("planeTicketId")
       .populate("userId", "username email role photo")
       .sort({ createdAt: -1 }) // Sort by creation date descending
       .skip(page)
@@ -139,9 +147,9 @@ export const getMyBooking = async (req, res) => {
     const books = await Booking.find({ userId: req.user?.id })
       .populate("tourId", "title city address")
       .populate("guideId", "firstName lastName email phone")
-      .populate("planeTicketId", "departureAirport arrivalAirport")
+      .populate("planeTicketId")
       .populate("userId", "username email role")
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: -1})
       .skip(page)
       .limit(limit);
     res.status(200).json({
@@ -207,7 +215,7 @@ export const makePayment = async (req, res) => {
       book.planeTicketId = book.planeTicketId || planeTicketId;
       await book.save();
       res
-        .status(204)
+        .status(200)
         .json({ success: true, message: "payment completed successfully" });
     }
   } catch (err) {

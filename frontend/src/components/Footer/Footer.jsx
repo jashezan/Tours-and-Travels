@@ -1,44 +1,51 @@
-import React from 'react'
-import './footer.css'
+import React from "react";
+import "./footer.css";
 
-import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap'
+import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 
-import { Link } from 'react-router-dom'
-import logo from '../../assets/images/logo512.png'
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo512.png";
 
 const quick__links = [
   {
-    path: '/home',
-    display: 'Home'
+    path: "/admin/login",
+    display: "Admin Login",
   },
   {
-    path: '/about',
-    display: 'About'
+    path: "/home",
+    display: "Home",
   },
   {
-    path: '/tours',
-    display: 'Tours'
+    path: "/about",
+    display: "About",
   },
-]
+  {
+    path: "/tours",
+    display: "Tours",
+  },
+];
 
 const quick__links2 = [
   {
-    path: '/gallery',
-    display: 'Gallery'
+    path: "/gallery",
+    display: "Gallery",
   },
   {
-    path: '/login',
-    display: 'Login'
+    path: "/login",
+    display: "Login",
   },
   {
-    path: '/register',
-    display: 'Register'
+    path: "/register",
+    display: "Register",
   },
-]
+  {
+    path: "/admin/login",
+    display: "Admin Login",
+  },
+];
 
 const Footer = () => {
-
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
@@ -153,6 +160,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-}
+};
 
-export default Footer
+export default Footer;

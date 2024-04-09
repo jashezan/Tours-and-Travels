@@ -53,6 +53,7 @@ const Profile = () => {
           margin: "2rem auto",
         }}
       >
+        <h2>My Bookings and Payments</h2>
         <BookingTable bookings={tableData} />
       </Container>
     </Container>

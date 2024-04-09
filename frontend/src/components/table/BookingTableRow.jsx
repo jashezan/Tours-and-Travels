@@ -1,7 +1,7 @@
 import { Tr, Td } from "@chakra-ui/react";
 import React from "react";
 import { BASE_URL } from "../../utils/config.js";
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, useToast, Tooltip, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const BookingTableRow = ({ booking }) => {
@@ -29,9 +29,30 @@ const BookingTableRow = ({ booking }) => {
   };
   return (
     <Tr>
-      <Td>{booking.userId.username}</Td>
-      <Td>{booking.tourId?.title}</Td>
-      <Td>{booking.guestSize}</Td>
+      <Td>
+        {booking.tourId !== null
+          ? "Tour"
+          : booking.guideId !== null
+          ? "Guide"
+          : booking.planeTicketId !== null
+          ? "Plane Ticket"
+          : "No Booking"}
+      </Td>
+      <Td>
+        {booking.tourId !== null ? (
+          <Text>
+            <Tooltip label={`Guest Size: ${booking.guestSize}`}>
+              {`${booking.tourId.title} (${booking.guestSize})`}
+            </Tooltip>
+          </Text>
+        ) : booking.guideId !== null ? (
+          `${booking.guideId.firstName} ${booking.guideId.lastName}`
+        ) : booking.planeTicketId !== null ? (
+          booking.planeTicketId.airline
+        ) : (
+          "No Booking"
+        )}
+      </Td>
       <Td>{new Date(booking.createdAt).toLocaleDateString()}</Td>
       <Td>
         {booking.paymentAmount !== null ? (
