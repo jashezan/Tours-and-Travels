@@ -21,16 +21,12 @@ const PlaneTicketSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    departureDate: {
+    departureDateTime: {
       type: Date,
       required: true,
     },
-    arrivalDate: {
+    arrivalDateTime: {
       type: Date,
-      required: true,
-    },
-    departureTime: {
-      type: String,
       required: true,
     },
     price: {
@@ -44,3 +40,4 @@ const PlaneTicketSchema = new mongoose.Schema(
 );
 
 const PlaneTicket = mongoose.model("PlaneTicket", PlaneTicketSchema);
+export default PlaneTicket;

@@ -22,3 +22,11 @@ export const _PAYMENT_TYPE = {
 };
 
 export const PAYMENT_TYPE = Object.freeze(_PAYMENT_TYPE);
+
+const _BOOKING_QUERY_TYPE = {
+  TOUR: "tour",
+  GUIDE: "guide",
+  PLANE_TICKET: "plane",
+};
+
+export const BOOKING_QUERY_TYPE = Object.freeze(_BOOKING_QUERY_TYPE);

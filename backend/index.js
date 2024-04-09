@@ -11,7 +11,6 @@ import authRoute from "./routes/auth.js";
 import reviewRoute from "./routes/reviews.js";
 import bookingRoute from "./routes/bookings.js";
 import guideRoute from "./routes/guide.js";
-import paymentRoute from "./routes/payment.js";
 
 dotenv.config();
 const app = express();
@@ -28,8 +27,8 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB database connected");
   } catch (err) {
-    console.log("MongoDB database connection failed");
-    console.log(err);
+    console.error("MongoDB database connection failed");
+    console.error(err);
   }
 };
 
@@ -47,9 +46,14 @@ app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/review", reviewRoute);
 app.use("/api/v1/guides", guideRoute);
-app.use("/api/v1/payment", paymentRoute);
 
-app.listen(port, () => {
-  connect();
-  console.log("Server listening on port", port);
-});
+try {
+  app.listen(port, () => {
+    connect();
+    console.log("Server listening on port", port);
+  });
+} catch (error) {
+  console.error("Server connection failed");
+  console.error(error);
+  process.exit(1);
+}
