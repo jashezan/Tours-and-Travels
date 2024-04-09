@@ -1,92 +1,111 @@
-[
-  {
-    "airline": "Delta Air Lines",
-    "flightNumber": "DL123",
-    "departureAirport": "Los Angeles International Airport",
-    "arrivalAirport": "John F. Kennedy International Airport",
-    "departureDateTime": "2024-04-10T08:00:00.000Z",
-    "arrivalDateTime": "2024-04-10T16:00:00.000Z",
-    "price": 350
+[{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd7b"
   },
-  {
-    "airline": "American Airlines",
-    "flightNumber": "AA456",
-    "departureAirport": "Chicago O'Hare International Airport",
-    "arrivalAirport": "San Francisco International Airport",
-    "departureDateTime": "2024-04-11T10:30:00.000Z",
-    "arrivalDateTime": "2024-04-11T14:45:00.000Z",
-    "price": 280
+  "airline": "Delta Air Lines",
+  "flightNumber": "DL123",
+  "departureAirport": "Los Angeles International Airport",
+  "arrivalAirport": "John F. Kennedy International Airport",
+  "departureDateTime": "2024-04-10T08:00:00.000Z",
+  "arrivalDateTime": "2024-04-10T16:00:00.000Z",
+  "price": 350
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd7c"
   },
-  {
-    "airline": "United Airlines",
-    "flightNumber": "UA789",
-    "departureAirport": "Denver International Airport",
-    "arrivalAirport": "Dallas/Fort Worth International Airport",
-    "departureDateTime": "2024-04-12T12:15:00.000Z",
-    "arrivalDateTime": "2024-04-12T14:45:00.000Z",
-    "price": 200
+  "airline": "American Airlines",
+  "flightNumber": "AA456",
+  "departureAirport": "Chicago O'Hare International Airport",
+  "arrivalAirport": "San Francisco International Airport",
+  "departureDateTime": "2024-04-11T10:30:00.000Z",
+  "arrivalDateTime": "2024-04-11T14:45:00.000Z",
+  "price": 280
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd7d"
   },
-  {
-    "airline": "Southwest Airlines",
-    "flightNumber": "WN101",
-    "departureAirport": "McCarran International Airport",
-    "arrivalAirport": "Orlando International Airport",
-    "departureDateTime": "2024-04-13T09:45:00.000Z",
-    "arrivalDateTime": "2024-04-13T17:30:00.000Z",
-    "price": 310
+  "airline": "United Airlines",
+  "flightNumber": "UA789",
+  "departureAirport": "Denver International Airport",
+  "arrivalAirport": "Dallas/Fort Worth International Airport",
+  "departureDateTime": "2024-04-12T12:15:00.000Z",
+  "arrivalDateTime": "2024-04-12T14:45:00.000Z",
+  "price": 200
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd7e"
   },
-  {
-    "airline": "British Airways",
-    "flightNumber": "BA234",
-    "departureAirport": "Heathrow Airport",
-    "arrivalAirport": "Charles de Gaulle Airport",
-    "departureDateTime": "2024-04-14T14:00:00.000Z",
-    "arrivalDateTime": "2024-04-14T17:30:00.000Z",
-    "price": 420
+  "airline": "Southwest Airlines",
+  "flightNumber": "WN101",
+  "departureAirport": "McCarran International Airport",
+  "arrivalAirport": "Orlando International Airport",
+  "departureDateTime": "2024-04-13T09:45:00.000Z",
+  "arrivalDateTime": "2024-04-13T17:30:00.000Z",
+  "price": 310
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd7f"
   },
-  {
-    "airline": "Qantas",
-    "flightNumber": "QF567",
-    "departureAirport": "Sydney Airport",
-    "arrivalAirport": "Auckland Airport",
-    "departureDateTime": "2024-04-15T08:20:00.000Z",
-    "arrivalDateTime": "2024-04-15T12:00:00.000Z",
-    "price": 240
+  "airline": "British Airways",
+  "flightNumber": "BA234",
+  "departureAirport": "Heathrow Airport",
+  "arrivalAirport": "Charles de Gaulle Airport",
+  "departureDateTime": "2024-04-14T14:00:00.000Z",
+  "arrivalDateTime": "2024-04-14T17:30:00.000Z",
+  "price": 420
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd80"
   },
-  {
-    "airline": "Emirates",
-    "flightNumber": "EK890",
-    "departureAirport": "Dubai International Airport",
-    "arrivalAirport": "Los Angeles International Airport",
-    "departureDateTime": "2024-04-16T18:00:00.000Z",
-    "arrivalDateTime": "2024-04-17T06:30:00.000Z",
-    "price": 890
+  "airline": "Qantas",
+  "flightNumber": "QF567",
+  "departureAirport": "Sydney Airport",
+  "arrivalAirport": "Auckland Airport",
+  "departureDateTime": "2024-04-15T08:20:00.000Z",
+  "arrivalDateTime": "2024-04-15T12:00:00.000Z",
+  "price": 240
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd81"
   },
-  {
-    "airline": "Lufthansa",
-    "flightNumber": "LH345",
-    "departureAirport": "Frankfurt Airport",
-    "arrivalAirport": "JFK International Airport",
-    "departureDateTime": "2024-04-18T11:45:00.000Z",
-    "arrivalDateTime": "2024-04-18T15:30:00.000Z",
-    "price": 480
+  "airline": "Emirates",
+  "flightNumber": "EK890",
+  "departureAirport": "Dubai International Airport",
+  "arrivalAirport": "Los Angeles International Airport",
+  "departureDateTime": "2024-04-16T18:00:00.000Z",
+  "arrivalDateTime": "2024-04-17T06:30:00.000Z",
+  "price": 890
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd82"
   },
-  {
-    "airline": "Singapore Airlines",
-    "flightNumber": "SQ678",
-    "departureAirport": "Changi Airport",
-    "arrivalAirport": "Los Angeles International Airport",
-    "departureDateTime": "2024-04-19T13:30:00.000Z",
-    "arrivalDateTime": "2024-04-20T07:00:00.000Z",
-    "price": 950
+  "airline": "Lufthansa",
+  "flightNumber": "LH345",
+  "departureAirport": "Frankfurt Airport",
+  "arrivalAirport": "JFK International Airport",
+  "departureDateTime": "2024-04-18T11:45:00.000Z",
+  "arrivalDateTime": "2024-04-18T15:30:00.000Z",
+  "price": 480
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd83"
   },
-  {
-    "airline": "Cathay Pacific",
-    "flightNumber": "CX901",
-    "departureAirport": "Hong Kong International Airport",
-    "arrivalAirport": "London Heathrow Airport",
-    "departureDateTime": "2024-04-20T16:20:00.000Z",
-    "arrivalDateTime": "2024-04-21T08:45:00.000Z",
-    "price": 780
-  }
-]
+  "airline": "Singapore Airlines",
+  "flightNumber": "SQ678",
+  "departureAirport": "Changi Airport",
+  "arrivalAirport": "Los Angeles International Airport",
+  "departureDateTime": "2024-04-19T13:30:00.000Z",
+  "arrivalDateTime": "2024-04-20T07:00:00.000Z",
+  "price": 950
+},{
+  "_id": {
+    "$oid": "6614c04ee2005a545645bd84"
+  },
+  "airline": "Cathay Pacific",
+  "flightNumber": "CX901",
+  "departureAirport": "Hong Kong International Airport",
+  "arrivalAirport": "London Heathrow Airport",
+  "departureDateTime": "2024-04-20T16:20:00.000Z",
+  "arrivalDateTime": "2024-04-21T08:45:00.000Z",
+  "price": 780
+}]

@@ -114,25 +114,6 @@
   "__v": 0
 },{
   "_id": {
-    "$oid": "65eb2ad68e10fcb8aaf92d51"
-  },
-  "username": "paad",
-  "email": "paad@gmail.com",
-  "password": "$2a$10$hpE8DQY3gcNlIC6y2Q3p6uTmc6ATg2Y1xGfC5Cv/SRubOQ/mnYk3.",
-  "role": "user",
-  "createdAt": {
-    "$date": {
-      "$numberLong": "1709910742337"
-    }
-  },
-  "updatedAt": {
-    "$date": {
-      "$numberLong": "1709910742337"
-    }
-  },
-  "__v": 0
-},{
-  "_id": {
     "$oid": "65ef20b0563917bcc8a780fc"
   },
   "username": "test",
@@ -261,6 +242,26 @@
   "updatedAt": {
     "$date": {
       "$numberLong": "1711774291197"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6612a7de6a99e6e81477b9e1"
+  },
+  "username": "Admin_Account",
+  "email": "muwy@proton.me",
+  "password": "$2a$10$E/IFXxnTo55/nmkAMNaJkelO9iA4OiQDdBqyNF6FdRsOmpz.g9OhC",
+  "photo": "",
+  "role": "admin",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1712498654449"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1712498654449"
     }
   },
   "__v": 0
