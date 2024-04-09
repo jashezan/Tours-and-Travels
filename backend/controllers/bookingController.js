@@ -70,7 +70,6 @@ export const getBookingById = async (req, res) => {
 export const getAllBooking = async (req, res) => {
   try {
     // queries all the bookings by status
-    await PlaneTicket.find();
     let { status, page, limit, type } = req.query;
     let queries = {};
     if (status) queries.status = status?.trim().toUpperCase();
@@ -215,5 +214,24 @@ export const makePayment = async (req, res) => {
     res
       .status(404)
       .json({ success: true, message: "Booking not found for Cancellation" });
+  }
+};
+
+/** @type {import('express').RequestHandler}  */
+export const getAllPlaneTicket = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || ROW_PER_PAGE;
+    const page = (parseInt(req.query.page) - 1 || 0) * limit;
+    const planeTickets = await PlaneTicket.find()
+      .sort({ createdAt: -1 })
+      .skip(page)
+      .limit(limit);
+    res.status(200).json({
+      success: true,
+      message: "successful",
+      data: planeTickets,
+    });
+  } catch (err) {
+    res.status(500).json({ success: true, message: err?.message });
   }
 };

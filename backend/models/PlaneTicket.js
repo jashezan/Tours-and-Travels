@@ -3,14 +3,12 @@ import mongoose from "mongoose";
 
 const PlaneTicketSchema = new mongoose.Schema(
   {
-    tourId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tour",
+    airline: {
+      type: String,
       required: true,
     },
-    passengerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    flightNumber: {
+      type: String,
       required: true,
     },
     departureAirport: {

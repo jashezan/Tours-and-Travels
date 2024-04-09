@@ -7,6 +7,7 @@
 | ""          | ""                                  | ""           | ""                                  |
 | GET         | /api/v1/booking                     | Admin        | Get all bookings (with queries)     |
 | POST        | /api/v1/booking                     | User         | Make a booking                      |
+| GET         | /api/v1/booking/plane-ticket          | Public         | Get All Plane Ticket List  |
 | GET         | /api/v1/booking/mybooking          | User         | Get user's bookings (with queries)  |
 | POST        | /api/v1/booking/payment/:id        | User         | Make payment for a booking          |
 | GET         | /api/v1/booking/user/:id           | User         | Get bookings by user ID (with queries) |
