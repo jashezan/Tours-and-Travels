@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const getTotalAmount = (data) => {
   let total = 0;
   if (data.tourId !== null) {
-    total += data?.tourId?.price;
+    total += (data?.tourId?.price * data?.guestSize) + 10;
   }
   if (data.guideId !== null) {
     total += data?.guideId?.pricePerHour;

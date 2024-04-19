@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../utils/config";
 
@@ -11,9 +11,11 @@ const Booking = ({ tour, avgRating }) => {
   const navigate = useNavigate();
   const toast = useToast();
   const { user } = useContext(AuthContext);
+  const { id } = useParams();
 
   const [booking, setBooking] = useState({
     userId: user && user._id,
+    tourId: id,
     userEmail: user && user.email,
     tourName: title,
     fullName: "",
@@ -53,6 +55,7 @@ const Booking = ({ tour, avgRating }) => {
       })
         .then((res) => res.json())
         .then((data) => {
+          // console.log(data);
           navigate(`/payment/${data.data._id}`);
         });
     } catch (err) {

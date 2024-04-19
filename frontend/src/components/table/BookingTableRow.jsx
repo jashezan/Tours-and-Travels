@@ -30,28 +30,32 @@ const BookingTableRow = ({ booking }) => {
   return (
     <Tr>
       <Td>
-        {booking.tourId !== null
-          ? "Tour"
-          : booking.guideId !== null
-          ? "Guide"
-          : booking.planeTicketId !== null
-          ? "Plane Ticket"
-          : "No Booking"}
+        <Link to={`/payment/${booking?._id}`}>
+          {booking.tourId !== null
+            ? "Tour"
+            : booking.guideId !== null
+            ? "Guide"
+            : booking.planeTicketId !== null
+            ? "Plane Ticket"
+            : "No Booking"}
+        </Link>
       </Td>
       <Td>
-        {booking.tourId !== null ? (
-          <Text>
-            <Tooltip label={`Guest Size: ${booking.guestSize}`}>
-              {`${booking.tourId.title} (${booking.guestSize})`}
-            </Tooltip>
-          </Text>
-        ) : booking.guideId !== null ? (
-          `${booking.guideId.firstName} ${booking.guideId.lastName}`
-        ) : booking.planeTicketId !== null ? (
-          booking.planeTicketId.airline
-        ) : (
-          "No Booking"
-        )}
+        <Link to={`/payment/${booking?._id}`}>
+          {booking.tourId !== null ? (
+            <Text>
+              <Tooltip label={`Guest Size: ${booking.guestSize}`}>
+                {`${booking.tourId.title} (${booking.guestSize})`}
+              </Tooltip>
+            </Text>
+          ) : booking.guideId !== null ? (
+            `${booking.guideId.firstName} ${booking.guideId.lastName}`
+          ) : booking.planeTicketId !== null ? (
+            booking.planeTicketId.airline
+          ) : (
+            "No Booking"
+          )}
+        </Link>
       </Td>
       <Td>{new Date(booking.createdAt).toLocaleDateString()}</Td>
       <Td>
